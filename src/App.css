@@ -1,0 +1,14 @@
+:root{
+    --text-color:rgba(117, 101, 101, 0.808);
+    --info-color:rgb(80, 74, 74);
+}
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+body{
+    width: 60rem;
+    margin: 100px auto;
+    background-color: rgba(0, 128, 128, 0.5);
+}
