@@ -2,7 +2,7 @@ import { useState } from "react"
 import Crypto from "./Crypto"
 import styles from "./CryptoList.css"
 import Navbar from "./Navbar/Navbar"
-const CryptoList = ({allData}) => {
+const CryptoList = ({allData,addToList}) => {
     //console.log(allData);
     const[searchData,setSearchData]=useState([])
     const renderCryptoList=()=>{
@@ -17,6 +17,7 @@ const CryptoList = ({allData}) => {
                   price={item.price}
                   name = {item.name}
                   daily = {item["1d"]}
+                  addToList={addToList}
                   />
                 )
              })
@@ -28,7 +29,7 @@ const CryptoList = ({allData}) => {
             
            <div className="title">
                <h5>#</h5>
-               <h5>Name</h5>
+               <h5 id="name">Name</h5>
                <h5>Symbol</h5>
                <h5>Price</h5>
                <h5>1d change</h5>
