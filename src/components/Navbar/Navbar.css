@@ -41,11 +41,15 @@
   color: white;  
   cursor: pointer;
 }
+
 .navbar .search{
     display: flex;
     margin-left: 20px;
     height: 40px;
     border: none;
+}
+.searchHidden{
+    opacity: 0;
 }
 .search{
     text-align: center;
@@ -86,15 +90,15 @@
         display: block;
         flex-direction: column;
         border:0;
-        width: 90vw;
+        width: 50vw;
         position: absolute;
-        top: 70px;
+        top: 50px;
         right: 10px;
         background-color: #333
     }
     .hemergerMenu li {
         padding: 20px;
-        width: 100%;
+        
         color: rgb(218, 200, 200);  
         border: 1px solid #fff;
         
@@ -112,4 +116,5 @@
     .bars{
         display: block;
     }
+    
 }

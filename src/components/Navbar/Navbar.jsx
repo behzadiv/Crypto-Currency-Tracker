@@ -30,7 +30,7 @@ const Navbar = ({searchInput ,showFavorite,showAll}) => {
                     </ul>
                 </div>
             </div>
-            <div className="search">
+            <div className={!isShow ? "search" : "searchHidden"}>
                 <input type="text" onChange={(e)=>changeHandler(e)} />
                 <FontAwesomeIcon icon={faSearch} className="searchIcon"/>
             </div>
