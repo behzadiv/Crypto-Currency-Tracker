@@ -1,7 +1,7 @@
 import { useState } from "react"
-import Crypto from "./Crypto"
+import Crypto from "../Crypto/Crypto"
 import styles from "./CryptoList.css"
-import Navbar from "./Navbar/Navbar"
+import Navbar from "../Navbar/Navbar"
 const CryptoList = ({allData,addToList}) => {
     //console.log(allData);
     const[searchData,setSearchData]=useState([])

@@ -1,10 +1,10 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import CryptoList from "./CryptoList";
-import Navbar from "./Navbar/Navbar"
+import CryptoList from "../components/CryptoList/CryptoList";
+import Navbar from "../components/Navbar/Navbar"
 
 
-const CryptoTrackerApp = () => {
+const HomePage = () => {
     const[allData,setAllData]=useState([])
     const[filteredData,setFilteredData]=useState([])
     const [myList,setMyList]=useState([])
@@ -45,7 +45,7 @@ const CryptoTrackerApp = () => {
         
            
         
-    },[showFavoriteList])
+    },[])
     
     const searchInput=(input)=>{
         
@@ -58,10 +58,9 @@ const CryptoTrackerApp = () => {
    }
     return ( 
         <div>
-            <Navbar  searchInput={searchInput} showFavorite={showFavorite} showAll={showAll}/ >
             <CryptoList  allData={filteredData} addToList={addToFavoriteList}/>
         </div>
      );
 }
  
-export default CryptoTrackerApp;
+export default HomePage;
