@@ -5,10 +5,13 @@ import Navbar from "../Navbar/Navbar"
 const CryptoList = ({allData,addToList}) => {
     //console.log(allData);
     const[searchData,setSearchData]=useState([])
+    const data = JSON.parse( localStorage.getItem("data"))
+    
     const renderCryptoList=()=>{
         return(
             allData.map((item)=>{
                 return(
+                  
                  <Crypto 
                   number ={allData.indexOf(item)}
                   key={item.id}
@@ -18,7 +21,9 @@ const CryptoList = ({allData,addToList}) => {
                   name = {item.name}
                   daily = {item["1d"]}
                   addToList={addToList}
+                  isFavorite ={data.includes(item.id)}
                   />
+            
                 )
              })
         )

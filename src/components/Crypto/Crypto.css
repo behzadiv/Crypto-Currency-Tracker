@@ -30,7 +30,12 @@ img{
     align-items: center;
     margin-left: 20px;
 }
-
+.notFavorite{
+    cursor: pointer;
+    margin-right: 10px; 
+}
 .favorite{
     cursor: pointer;
+    margin-right: 10px; 
+    color:rgba(182, 182, 34, 0.705)
 }

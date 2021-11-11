@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar} from '@fortawesome/free-solid-svg-icons'
 import { useRef, useState } from "react"
 
-const Crypto = ({symbol,logo,price,name,daily,number,addToList}) => {
+const Crypto = ({symbol,logo,price,name,daily,number,addToList,isFavorite}) => {
     const oneDay = daily
     
     const convertVolume=(volume)=>{
@@ -29,7 +29,7 @@ const Crypto = ({symbol,logo,price,name,daily,number,addToList}) => {
         <div className="cryptoRow">
             <h5>{ true ? number+1 : number}</h5>
             <div className="cryptoName">
-                <span className="favorite" onClick={addFavorite}><FontAwesomeIcon icon={faStar}/></span> 
+                <span className={isFavorite ? "favorite" : "notFavorite" }onClick={addFavorite}><FontAwesomeIcon icon={faStar}/></span> 
                 <img src={logo} alt=""/> 
                 <h3>{name}</h3>
             </div>
