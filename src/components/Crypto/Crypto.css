@@ -39,3 +39,10 @@ img{
     margin-right: 10px; 
     color:rgba(182, 182, 34, 0.705)
 }
+
+@media screen and (max-width : 600px) {
+        .cryptoRow {
+            display: grid;
+            grid-template-columns: 1fr 2fr 2fr 1fr 1fr;
+        }
+}

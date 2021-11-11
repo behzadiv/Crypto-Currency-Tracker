@@ -25,8 +25,11 @@ const Crypto = ({symbol,logo,price,name,daily,number,addToList,isFavorite}) => {
         addToList(newOne)
     }
     
-    return ( 
-        <div className="cryptoRow">
+    return (
+    <div>
+        {window.innerWidth >= 600  
+        ?
+        (<div className="cryptoRow">
             <h5>{ true ? number+1 : number}</h5>
             <div className="cryptoName">
                 <span className={isFavorite ? "favorite" : "notFavorite" }onClick={addFavorite}><FontAwesomeIcon icon={faStar}/></span> 
@@ -37,8 +40,22 @@ const Crypto = ({symbol,logo,price,name,daily,number,addToList,isFavorite}) => {
             <h4>${(price*1).toFixed(2)}</h4>
             <h4 className={oneDay.price_change_pct >=0 ? "green":"red"}>{(oneDay.price_change_pct*100).toFixed(2)} %</h4>
             <h4>${convertVolume(oneDay.volume)}</h4>
-        </div>
-     );
+        </div>)
+        :
+       (<div className="cryptoRow">
+            <h5>{ true ? number+1 : number}</h5>
+            <div className="cryptoName">
+                <img src={logo} alt=""/> 
+                <h5 ref={myRef}>{symbol}</h5> 
+            </div>
+            <h4>${(price*1).toFixed(2)}</h4>
+            <h4 className={oneDay.price_change_pct >=0 ? "green":"red"}>{(oneDay.price_change_pct*100).toFixed(2)} %</h4>
+                <span className={isFavorite ? "favorite" : "notFavorite" }onClick={addFavorite}><FontAwesomeIcon icon={faStar}/></span> 
+            
+        </div>)}  
+    </div>  
+     )
+   
 }
  
 export default Crypto;
