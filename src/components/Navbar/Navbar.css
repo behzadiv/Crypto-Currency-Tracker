@@ -1,5 +1,5 @@
 .navbar{
-    width: 100vw;
+    width: 100%;
     height: 5rem;
     display: flex;
     align-items: center;
@@ -41,7 +41,9 @@
   color: white;  
   cursor: pointer;
 }
-
+.hemergerMenu{
+    display: none;
+}
 .navbar .search{
     display: flex;
     margin-left: 20px;
@@ -58,7 +60,7 @@
 .search input{
     color: blueviolet;
     padding: 5px 10px;
-    font-size: larger;
+    font-size: medium;
     border: 1px solid rgb(66, 66, 88);
     border-radius: 10px;
     outline: none;
@@ -86,6 +88,12 @@
     .menu{
         display: none;
     }
+    .logo{
+        margin-left: 10px;
+    }
+    .bars{
+        margin-right: 10px;
+    }
     .hemergerMenu{
         display: block;
         flex-direction: column;
@@ -93,7 +101,7 @@
         width: 50vw;
         position: absolute;
         top: 50px;
-        right: 10px;
+        right: 30px;
         background-color: #333
     }
     .hemergerMenu li {
@@ -116,5 +124,10 @@
     .bars{
         display: block;
     }
-    
+    .search input{
+        width: 70%;
+    }
+    .searchIcon{
+        display: none;
+    }
 }

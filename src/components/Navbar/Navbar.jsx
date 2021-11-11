@@ -33,7 +33,7 @@ const Navbar = ({searchInput ,showFavorite,showAll}) => {
                 <FontAwesomeIcon icon={faMoneyBillWaveAlt} className="logoIcon"/>
                 <a href=""><h2>Crypto</h2><span>make money</span></a>
                 <div>
-                    <ul className={!isShow || (window.screen.width>800) ? "menu": "hemergerMenu"}>
+                    <ul className={!isShow || (window.innerWidth>800) ? "menu": "hemergerMenu"}>
                     {items.map((item)=>{
                 return(
                     <li key={item.to}>
@@ -56,7 +56,7 @@ const Navbar = ({searchInput ,showFavorite,showAll}) => {
                 </div>
             </div>
             <div className={!isShow ? "search" : "searchHidden"}>
-                <input type="text" onChange={(e)=>changeHandler(e)} />
+                <input type="text" onChange={(e)=>changeHandler(e)} placeholder="Search..." />
                 <FontAwesomeIcon icon={faSearch} className="searchIcon"/>
             </div>
             <div  onClick={showMenu}><FontAwesomeIcon icon={isShow? faTimes : faBars} className="bars"/></div>

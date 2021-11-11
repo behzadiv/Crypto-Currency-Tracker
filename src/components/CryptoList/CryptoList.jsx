@@ -41,7 +41,7 @@ const CryptoList = ({ allData, addToList }) => {
           <h5>#</h5>
           <h5 id="name">Name</h5>
           <h5>Price</h5>
-          <h5>1d change</h5>
+          <h5>1d</h5>
         </div>
       )}
 
