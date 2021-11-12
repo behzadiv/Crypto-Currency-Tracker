@@ -26,6 +26,7 @@ const Crypto = ({symbol,logo,price,name,daily,number,addToList,isFavorite}) => {
     }
     
     return (
+        
     <div>
         {window.innerWidth >= 600  
         ?
