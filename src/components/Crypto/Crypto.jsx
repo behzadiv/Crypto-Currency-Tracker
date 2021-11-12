@@ -37,7 +37,7 @@ const Crypto = ({symbol,logo,price,name,daily,number,addToList,isFavorite}) => {
                 <h3>{name}</h3>
             </div>
             <h5 ref={myRef}>{symbol}</h5> 
-            <h4>${(price*1).toFixed(2)}</h4>
+            <h4>${price*1 < .1 ? (price*1).toFixed(5) : (price*1).toFixed(2) }</h4>
             <h4 className={oneDay.price_change_pct >=0 ? "green":"red"}>{(oneDay.price_change_pct*100).toFixed(2)} %</h4>
             <h4>${convertVolume(oneDay.volume)}</h4>
         </div>)
@@ -48,7 +48,7 @@ const Crypto = ({symbol,logo,price,name,daily,number,addToList,isFavorite}) => {
                 <img src={logo} alt=""/> 
                 <h5 ref={myRef}>{symbol}</h5> 
             </div>
-            <h4>${(price*1).toFixed(2)}</h4>
+            <h4>${price*1 < .1 ? (price*1).toFixed(5) : (price*1).toFixed(2) }</h4>
             <h4 className={oneDay.price_change_pct >=0 ? "green":"red"}>{(oneDay.price_change_pct*100).toFixed(2)} %</h4>
                 <span className={isFavorite ? "favorite" : "notFavorite" }onClick={addFavorite}><FontAwesomeIcon icon={faStar}/></span> 
             
