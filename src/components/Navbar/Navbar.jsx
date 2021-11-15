@@ -1,13 +1,9 @@
 import { useEffect, useState } from "react";
-import styles from "./Navbar.css";
+import "./Navbar.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faMoneyBillWaveAlt,
-  faSearch,
-  faTimes,
-  faBars,
-} from "@fortawesome/free-solid-svg-icons";
+import {faMoneyBillWaveAlt} from "@fortawesome/free-solid-svg-icons";
 import { NavLink, withRouter } from "react-router-dom";
+import SearchComponent from "../../components/SearchComponent/SearchComponent";
 
 const Navbar = ({ searchInput, showFavorite, showAll }) => {
   const items = [
@@ -60,14 +56,7 @@ const Navbar = ({ searchInput, showFavorite, showAll }) => {
           </div>
         ) : null}
       </div>
-      <div className="search">
-        <input
-          type="text"
-          onChange={(e) => changeHandler(e)}
-          placeholder="Search..."
-        />
-        <FontAwesomeIcon icon={faSearch} className="searchIcon" />
-      </div>
+      <SearchComponent / >
       {/* <div onClick={showMenu}>
         <FontAwesomeIcon icon={isShow ? faTimes : faBars} className="bars" />
       </div> */}
