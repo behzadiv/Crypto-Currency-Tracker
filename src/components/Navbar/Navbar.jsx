@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./Navbar.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {faMoneyBillWaveAlt} from "@fortawesome/free-solid-svg-icons";
+import { faMoneyBillWaveAlt } from "@fortawesome/free-solid-svg-icons";
 import { NavLink, withRouter } from "react-router-dom";
 import SearchComponent from "../../components/SearchComponent/SearchComponent";
 
@@ -13,21 +13,10 @@ const Navbar = ({ searchInput, showFavorite, showAll }) => {
     { name: "Profile", to: "profile" },
   ];
 
-  const [isShow, setIsShow] = useState(false);
   const changeHandler = (e) => {
     searchInput(e.target.value);
   };
 
-  //    useEffect(()=>{
-  //      if(window.screen.width>800)setIsShow(false)
-  //       console.log(isShow);
-  //    },[])
-  const showMenu = (e) => {
-    console.log(e.target);
-    !isShow ? setIsShow(true) : setIsShow(false);
-    //console.log(isShow);
-  };
-  
   return (
     <div className="navbar">
       <div className="logo">
@@ -36,30 +25,25 @@ const Navbar = ({ searchInput, showFavorite, showAll }) => {
           <h2>Crypto</h2>
           <span>make money</span>
         </a>
-        {window.innerWidth >= 800 ? (
-          <div>
-            <ul className="menu">
-              {items.map((item) => {
-                return (
-                  <li key={item.to}>
-                    <NavLink
-                      to={item.to}
-                      exact={item.exact || false}
-                      activeClassName="activeLink"
-                    >
-                      {item.name}
-                    </NavLink>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-        ) : null}
+        <div>
+          <ul className="menu">
+            {items.map((item) => {
+              return (
+                <li key={item.to}>
+                  <NavLink
+                    to={item.to}
+                    exact={item.exact || false}
+                    activeClassName="activeLink"
+                  >
+                    {item.name}
+                  </NavLink>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
       </div>
-      <SearchComponent / >
-      {/* <div onClick={showMenu}>
-        <FontAwesomeIcon icon={isShow ? faTimes : faBars} className="bars" />
-      </div> */}
+      <SearchComponent />
     </div>
   );
 };
