@@ -2,11 +2,12 @@ import { useState } from "react";
 import Crypto from "../Crypto/Crypto";
 import styles from "./CryptoList.css";
 import Navbar from "../Navbar/Navbar";
+import GetWindowInnerwidth from "../../utility/GetWindowInnerwidth";
 const CryptoList = ({ allData, addToList }) => {
   //console.log(allData);
   const [searchData, setSearchData] = useState([]);
   const data = JSON.parse(localStorage.getItem("data"));
-
+  const {width} = GetWindowInnerwidth()
   const renderCryptoList = () => {
     return allData.map((item) => {
       return (
@@ -27,7 +28,7 @@ const CryptoList = ({ allData, addToList }) => {
   return (
     <div>
         
-      {window.innerWidth >= 600 ? (
+      {width >= 600 ? (
         <div className="title">
           <h5>#</h5>
           <h5 id="name">Name</h5>

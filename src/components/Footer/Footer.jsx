@@ -1,22 +1,43 @@
 import styles from "./Footer.css";
-import {NavLink} from "react-router-dom"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCalculator, faHome,faUser, faHeart} from '@fortawesome/free-solid-svg-icons'
+import { NavLink } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faCalculator,
+  faHome,
+  faUser,
+  faHeart,
+} from "@fortawesome/free-solid-svg-icons";
+import GetWindowInnerwidth from "../../utility/GetWindowInnerwidth";
 
 const Footer = () => {
   const items = [
-    { name: "Home", to: "/", exact: true ,icon:<FontAwesomeIcon icon={faHome}/>},
-    { name: "Favorites", to: "/favorites" ,icon:<FontAwesomeIcon icon={faHome,faHeart}/>},
-    { name: "Convertor", to: "currency-convertor",icon:<FontAwesomeIcon icon={faCalculator}/> },
-    { name: "Profile", to: "profile",icon:<FontAwesomeIcon icon={faUser}/> },
+    {
+      name: "Home",
+      to: "/",
+      exact: true,
+      icon: <FontAwesomeIcon icon={faHome} />,
+    },
+    {
+      name: "Favorites",
+      to: "/favorites",
+      icon: <FontAwesomeIcon icon={(faHome, faHeart)} />,
+    },
+    {
+      name: "Convertor",
+      to: "currency-convertor",
+      icon: <FontAwesomeIcon icon={faCalculator} />,
+    },
+    { name: "Profile", to: "profile", icon: <FontAwesomeIcon icon={faUser} /> },
   ];
+  const {width}=GetWindowInnerwidth()
 
-  return (
+ return (
     <div>
-      {window.innerWidth >= 800 ? (
-        <div className="footer">
-          <p>Footer</p>
-        </div>
+      {width >= 800 ? (
+        // <div className="footer">
+        //   <p>Footer</p>
+        // </div>
+        null
       ) : (
         <div className="footermenu">
           <ul>
