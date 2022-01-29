@@ -28,7 +28,6 @@ const HomePage = () => {
         `https://api.nomics.com/v1/currencies/ticker?key=2894a1f621619bd9c9778bcb9b476fcc211f623d&ids=&interval=1h,1d,7d,30d,365d&convert=USD&_ga=2.244143877.18783313.1633931534-1081431702.1633931534&per-page=200`
       )
       .then((response) => {
-        //console.log("ok", newList);
         setAllData(response.data);
         setFilteredData(response.data);
       })
