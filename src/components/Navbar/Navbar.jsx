@@ -9,7 +9,7 @@ const Navbar = ({ searchInput, showFavorite, showAll }) => {
   const items = [
     { name: "Home", to: "/", exact: true },
     { name: "Favorites", to: "/favorites" },
-    { name: "Convertor", to: "currency-convertor" },
+    { name: "Converter", to: "currency-converter" },
     { name: "Profile", to: "profile" },
   ];
 

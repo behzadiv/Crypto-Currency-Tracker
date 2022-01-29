@@ -1,0 +1,72 @@
+.converter-container {
+  background-color: rgb(248, 248, 248);
+  max-width: 250px;
+  margin: 2rem auto;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 300px;
+  padding: 2.5rem 1.5rem;
+  border-radius: 8px;
+}
+.converter-container-title {
+  font-size: medium;
+  padding: 1rem 0;
+}
+.input-qty {
+  width: 100%;
+  display: flex;
+}
+.converter-container input {
+  padding: 10px 0 10px 10px;
+  border-radius: 5px;
+  width: 100%;
+}
+.converter-container input:focus {
+  outline: none;
+  border: 2px solid #2684ff;
+}
+.select-input {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 1rem 0;
+}
+.exchange-icon {
+  transform: rotateZ(90deg);
+  margin: 0.2rem 0;
+  color: blueviolet;
+}
+.equal-section {
+  font-weight: 500;
+}
+@media screen and (min-width: 600px) {
+  .converter-container {
+    max-width: 500px;
+    padding: 2rem;
+  }
+  .converter-container-title {
+      font-size: large;
+  }
+  .select-input {
+    flex-direction: row;
+    align-items: center;
+    padding: 0 20px;
+  }
+  .exchange-icon {
+    transform: rotateZ(0);
+    margin: 0 0.4rem;
+  }
+  .select-option {
+    width: 90%;
+  }
+  .input-qty {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+  }
+  .input-qty input {
+    width: 45%;
+  }
+}

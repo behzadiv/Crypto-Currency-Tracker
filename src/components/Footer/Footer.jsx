@@ -23,8 +23,8 @@ const Footer = () => {
       icon: <FontAwesomeIcon icon={(faHome, faHeart)} />,
     },
     {
-      name: "Convertor",
-      to: "currency-convertor",
+      name: "Converter",
+      to: "currency-converter",
       icon: <FontAwesomeIcon icon={faCalculator} />,
     },
     { name: "Profile", to: "profile", icon: <FontAwesomeIcon icon={faUser} /> },
