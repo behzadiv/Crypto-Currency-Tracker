@@ -1,3 +1,8 @@
+body::after {
+    content: "";
+    height: 20vh;
+    display: block;
+  }
 .footer{
     height: 10vh;
     bottom: 0;
