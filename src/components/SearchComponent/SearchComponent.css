@@ -11,9 +11,9 @@
 }
 .search input{
     height: 25px;
-    color: blueviolet;
-    padding: 1px 10px;
-    font-size: medium;
+    padding: 5px 12px;
+    font-size: large;
+    font-weight: 500;
     border: 1px solid rgb(66, 66, 88);
     border-radius: 5px;
     outline: none;    

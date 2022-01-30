@@ -26,7 +26,7 @@ const CryptoList = ({ allData, addToList }) => {
     });
   };
   return (
-    <div>
+    <div className="body-content">
         
       {width >= 600 ? (
         <div className="title">

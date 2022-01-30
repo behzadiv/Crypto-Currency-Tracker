@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import CryptoList from "../components/CryptoList/CryptoList";
 import axios from "axios"
-
+import "./Favorite.css"
 const Favorite = () => {
         const data = JSON.parse( localStorage.getItem("data"))
         const[allData , setAllData]= useState([])
@@ -29,7 +29,7 @@ const Favorite = () => {
         },[data])
         return ( 
             <div>
-               {allData.length ? <CryptoList allData = {allData} addToList={addToFavoriteList}/ > : <p>there is no favorite cryptos</p>}
+               {allData.length ? <CryptoList allData = {allData} addToList={addToFavoriteList}/ > : <p className="empty-text">Favorite list is empty...!</p>}
             </div>
      );
 }

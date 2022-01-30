@@ -1,0 +1,10 @@
+.empty-text{
+    margin-top: 100px;
+    font-weight: 700;
+}
+
+@media screen and (min-height: 600px) {
+    .empty-text{
+      margin-top: 300px;
+    }
+  }
