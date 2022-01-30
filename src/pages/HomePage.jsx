@@ -3,6 +3,9 @@ import { useEffect, useState } from "react";
 import CryptoList from "../components/CryptoList/CryptoList";
 import Navbar from "../components/Navbar/Navbar";
 import { useSearchInput } from "../provider/SearchProvider";
+import "./HomePage.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowCircleUp } from "@fortawesome/free-solid-svg-icons";
 
 const HomePage = () => {
   const [allData, setAllData] = useState([]);
@@ -42,12 +45,11 @@ const HomePage = () => {
 
   useEffect(() => {
     myRequest();
-    if(userInput.length===0) setInterval(()=>myRequest, 5000);
+    if (userInput.length === 0) setInterval(() => myRequest, 5000);
     localStorage.setItem("data", JSON.stringify(favoriteList));
     //console.log(userInput.length);
-    
-      // if(userInput.length>0)clearInterval(myTimer)
-   
+
+    // if(userInput.length>0)clearInterval(myTimer)
   }, [favoriteList]);
 
   const searchInput = (x) => {
@@ -57,9 +59,47 @@ const HomePage = () => {
     setFilteredData(filtered);
     //console.log(filtered);
   };
+  const goToUp = () => {
+    document.documentElement.scrollTop = 0;
+  };
+
+  useEffect(() => {
+    const myFunction = () => {
+      let myBtn = document.querySelector(".up-button");
+      if (document.documentElement.scrollTop > 20) {
+        myBtn.style.display = "block";
+      } else {
+        myBtn.style.display = "none";
+      }
+    };
+    // clean up code
+    window.removeEventListener("scroll", myFunction);
+    window.addEventListener("scroll", myFunction);
+    return () => window.removeEventListener("scroll", myFunction);
+  }, []);
+
   return (
-    <div>
-      <CryptoList allData={filteredData} addToList={addToFavoriteList} />
+    <div className="homePage">
+      {allData.length > 0 ? (
+        <div>
+          <CryptoList allData={filteredData} addToList={addToFavoriteList} />
+        </div>
+      ) : (
+        <h2 className="loading">
+          <span className="span1">L</span>
+          <span className="span2">o</span>
+          <span className="span3">a</span>
+          <span className="span4">d</span>
+          <span className="span5">i</span>
+          <span className="span6">n</span>
+          <span className="span7">g</span>
+        </h2>
+      )}
+      <div className="up-button">
+        <span onClick={goToUp}>
+          <FontAwesomeIcon icon={faArrowCircleUp} />
+        </span>
+      </div>
     </div>
   );
 };

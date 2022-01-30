@@ -1,0 +1,78 @@
+.up-button {
+  position: fixed;
+  bottom: 100px;
+  display: none;
+  width: 100%;
+  text-align: right;
+}
+.up-button span {
+  cursor: pointer;
+  padding-right: 3rem;
+  font-size: xx-large;
+  color: #2684ff;
+}
+.loading {
+  /* height: 100vh; */
+  margin-top: 100px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  font-weight: 700;
+}
+.loading span {
+  margin-right: 4px;
+}
+.loading .span1 {
+  animation: loadingAnim 1.2s ease-in-out infinite;
+}
+.loading .span2 {
+  animation: loadingAnim 1.2s ease-in-out infinite;
+  animation-delay: 0.2s;
+}
+.loading .span3 {
+  animation: loadingAnim 1.2s ease-in-out infinite;
+  animation-delay: 0.3s;
+}
+.loading .span4 {
+  animation: loadingAnim 1.2s ease-in-out infinite;
+  animation-delay: 0.4s;
+}
+.loading .span5 {
+  animation: loadingAnim 1.2s ease-in-out infinite;
+  animation-delay: 0.5s;
+}
+.loading .span6 {
+  animation: loadingAnim 1.2s ease-in-out infinite;
+  animation-delay: 0.6s;
+}
+.loading .span7 {
+  animation: loadingAnim 1.2s ease-in-out infinite;
+  animation-delay: 0.7s;
+}
+@keyframes loadingAnim {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.4);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes loadingAnim2 {
+  0% {
+    transform: translateX(0px);
+  }
+  50% {
+    transform: translateX(10px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}
+@media screen and (min-height: 600px) {
+  .loading{
+    margin-top: 300px;
+  }
+}
