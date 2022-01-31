@@ -22,10 +22,11 @@ const HomePage = () => {
       if (index > -1) {
         favoriteList.splice(index, 1);
         localStorage.setItem("data", JSON.stringify(favoriteList));
+        myRequest();
       }
     }
   };
-  const myRequest = (newList) => {
+  const myRequest = () => {
     axios
       .get(
         `https://api.nomics.com/v1/currencies/ticker?key=2894a1f621619bd9c9778bcb9b476fcc211f623d&ids=&interval=1h,1d,7d,30d,365d&convert=USD&_ga=2.244143877.18783313.1633931534-1081431702.1633931534&per-page=200`
@@ -47,9 +48,6 @@ const HomePage = () => {
     myRequest();
     if (userInput.length === 0) setInterval(() => myRequest, 5000);
     localStorage.setItem("data", JSON.stringify(favoriteList));
-    //console.log(userInput.length);
-
-    // if(userInput.length>0)clearInterval(myTimer)
   }, [favoriteList]);
 
   const searchInput = (x) => {
@@ -59,38 +57,42 @@ const HomePage = () => {
     setFilteredData(filtered);
     //console.log(filtered);
   };
-  
+
   //logic of goToTop btn
-  const[collapsed,setCollapsed]=useState(false)
+  const [collapsed, setCollapsed] = useState(false);
   const myBtn = document.querySelector(".up-button");
   const goToUp = () => {
-    setCollapsed(false)
+    setCollapsed(false);
     //myBtn.style.display = "none";
     document.documentElement.scrollTo({
       top: 0,
-      behavior: 'smooth'
+      behavior: "smooth",
     });
     console.log(collapsed);
   };
   useEffect(() => {
     const myFunction = () => {
-      if(collapsed && (document.documentElement.scrollTop ===0 || document.documentElement.scrollTop >20)){return}
+      if (
+        collapsed &&
+        (document.documentElement.scrollTop === 0 ||
+          document.documentElement.scrollTop > 20)
+      ) {
+        return;
+      }
       const myBtn = document.querySelector(".up-button");
       if (document.documentElement.scrollTop > 20) {
         myBtn.style.display = "block";
-        setCollapsed(true)
-        console.log(collapsed);
+        setCollapsed(true);
       } else {
         myBtn.style.display = "none";
-        setCollapsed(false)
-        console.log(collapsed);
+        setCollapsed(false);
       }
     };
     // clean up code
-    window.addEventListener("scroll", myFunction )
-    return () =>{
+    window.addEventListener("scroll", myFunction);
+    return () => {
       window.removeEventListener("scroll", myFunction);
-    }
+    };
   }, [collapsed]);
 
   return (
