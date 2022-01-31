@@ -9,8 +9,8 @@ const Navbar = ({ searchInput, showFavorite, showAll }) => {
   const items = [
     { name: "Home", to: "/", exact: true },
     { name: "Favorites", to: "/favorites" },
-    { name: "Converter", to: "currency-converter" },
-    { name: "Profile", to: "profile" },
+    { name: "Converter", to: "/currency-converter" },
+    { name: "Fund", to: "/fund" },
   ];
 
   const changeHandler = (e) => {

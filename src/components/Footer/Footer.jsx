@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCalculator,
   faHome,
-  faUser,
+  faWallet,
   faHeart,
 } from "@fortawesome/free-solid-svg-icons";
 import GetWindowInnerwidth from "../../utility/GetWindowInnerwidth";
@@ -24,10 +24,10 @@ const Footer = () => {
     },
     {
       name: "Converter",
-      to: "currency-converter",
+      to: "/currency-converter",
       icon: <FontAwesomeIcon icon={faCalculator} />,
     },
-    { name: "Profile", to: "profile", icon: <FontAwesomeIcon icon={faUser} /> },
+    { name: "Fund", to: "/fund", icon: <FontAwesomeIcon icon={faWallet} /> },
   ];
   const {width}=GetWindowInnerwidth()
 
