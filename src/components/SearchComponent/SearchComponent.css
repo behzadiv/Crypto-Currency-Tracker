@@ -12,11 +12,11 @@
 .search input{
     height: 25px;
     padding: 5px 12px;
-    font-size: large;
+    font-size: small;
     font-weight: 500;
-    border: 1px solid rgb(66, 66, 88);
     border-radius: 5px;
-    outline: none;    
+    outline: none; 
+    transition: all 400ms;   
 }
 .search .searchIcon{
     text-align: center;
@@ -29,15 +29,7 @@
     transition: all 1s;
 }
 .search input:focus{
-    border: 2px solid blueviolet;
+    border: 2px solid #2684ff;
 
 }
-@media screen and (max-width:800px){
-    
-    .search input{
-        width: 85%;
-        position: relative;
-    }
-    
-    
-}
+ 
