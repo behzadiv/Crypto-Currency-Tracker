@@ -59,24 +59,39 @@ const HomePage = () => {
     setFilteredData(filtered);
     //console.log(filtered);
   };
+  
+  //logic of goToTop btn
+  const[collapsed,setCollapsed]=useState(false)
+  const myBtn = document.querySelector(".up-button");
   const goToUp = () => {
-    document.documentElement.scrollTop = 0;
+    setCollapsed(false)
+    //myBtn.style.display = "none";
+    document.documentElement.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+    console.log(collapsed);
   };
-
   useEffect(() => {
     const myFunction = () => {
-      let myBtn = document.querySelector(".up-button");
+      if(collapsed && (document.documentElement.scrollTop ===0 || document.documentElement.scrollTop >20)){return}
+      const myBtn = document.querySelector(".up-button");
       if (document.documentElement.scrollTop > 20) {
         myBtn.style.display = "block";
+        setCollapsed(true)
+        console.log(collapsed);
       } else {
         myBtn.style.display = "none";
+        setCollapsed(false)
+        console.log(collapsed);
       }
     };
     // clean up code
-    window.removeEventListener("scroll", myFunction);
-    window.addEventListener("scroll", myFunction);
-    return () => window.removeEventListener("scroll", myFunction);
-  }, []);
+    window.addEventListener("scroll", myFunction )
+    return () =>{
+      window.removeEventListener("scroll", myFunction);
+    }
+  }, [collapsed]);
 
   return (
     <div className="homePage">
