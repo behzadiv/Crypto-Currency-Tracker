@@ -1,3 +1,13 @@
+.sponser-text{
+  background-color: black;
+  margin-bottom: 1rem;
+  color: white;
+  padding: .5rem 0;
+  font-size: x-small;
+}
+.sponser-text a{
+  border-bottom: 1px solid blue;
+}
 .up-button {
   position: fixed;
   bottom: 100px;

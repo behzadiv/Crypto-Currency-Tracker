@@ -96,7 +96,10 @@ const HomePage = () => {
   }, [collapsed]);
 
   return (
-    <div className="homePage">
+   <section>
+
+      <div className="homePage">
+        <div className="sponser-text"><a href="https://nomics.com" target="_blank">Crypto Market Cap & Pricing Data Provided By Nomics.</a></div>
       {allData.length > 0 ? (
         <div>
           <CryptoList allData={filteredData} addToList={addToFavoriteList} />
@@ -118,6 +121,7 @@ const HomePage = () => {
         </span>
       </div>
     </div>
+   </section>
   );
 };
 
