@@ -15,8 +15,8 @@ const HomePage = () => {
   );
   const userInput = useSearchInput();
   const addToFavoriteList = (selectedCryptoUuid) => {
-    //console.log(selectedCryptoUuid);
-    if (!favoriteList.includes(selectedCryptoUuid)) setFavoriteList([...favoriteList, selectedCryptoUuid]);
+    if (!favoriteList.includes(selectedCryptoUuid))
+      setFavoriteList([...favoriteList, selectedCryptoUuid]);
     else {
       const index = favoriteList.indexOf(selectedCryptoUuid);
       if (index > -1) {
@@ -26,19 +26,15 @@ const HomePage = () => {
       }
     }
   };
-  const fav=["razxDUgYGNAdQ","HIVsRcGKkPFtW","Qwsogvtv82FCd"]
   const myRequest = () => {
-    axios
-     ({
-      method: 'GET',
+    axios({
+      method: "GET",
       url: `https://coinranking1.p.rapidapi.com/coins/`,
-      // params: {referenceCurrencyUuid:"HIVsRcGKkPFtW"},
       headers: {
-        'x-rapidapi-host': 'coinranking1.p.rapidapi.com',
-        'x-rapidapi-key': '7dc7076d97msh973dbda7c2e6c5dp11a1c2jsn4ed091e41d67'
-      }
-    }
-      )
+        "x-rapidapi-host": "coinranking1.p.rapidapi.com",
+        "x-rapidapi-key": "7dc7076d97msh973dbda7c2e6c5dp11a1c2jsn4ed091e41d67",
+      },
+    })
       .then((response) => {
         setAllData(response.data.data.coins);
         setFilteredData(response.data.data.coins);
@@ -47,31 +43,37 @@ const HomePage = () => {
         console.log(error);
       });
   };
-  useEffect(() => {
-    //console.log(userInput);
-    searchInput(userInput);
-  }, [userInput]);
-
-  useEffect(() => {
-    myRequest();
-    if (userInput.length === 0) setInterval(() => myRequest, 5000);
-    localStorage.setItem("data", JSON.stringify(favoriteList));
-  }, [favoriteList]);
-
   const searchInput = (x) => {
     const filtered = allData.filter((item) => {
       return item.name.toLowerCase().includes(x.toLowerCase());
     });
     setFilteredData(filtered);
-    //console.log(filtered);
   };
+
+  useEffect(() => {
+    myRequest();
+    localStorage.setItem("data", JSON.stringify(favoriteList));
+  }, [favoriteList]);
+  const [intervalId, setIntervalId] = useState(0);
+  useEffect(() => {
+    if (allData.length) {
+      searchInput(userInput);
+    }
+    if (userInput.length) {
+      clearInterval(intervalId);
+      return;
+    }
+    const myInterval = setInterval(() => {
+      myRequest();
+    }, 5000);
+    setIntervalId(myInterval);
+    return () => clearInterval(myInterval);
+  }, [userInput]);
 
   //logic of goToTop btn
   const [collapsed, setCollapsed] = useState(false);
-  const myBtn = document.querySelector(".up-button");
   const goToUp = () => {
     setCollapsed(false);
-    //myBtn.style.display = "none";
     document.documentElement.scrollTo({
       top: 0,
       behavior: "smooth",
@@ -107,7 +109,10 @@ const HomePage = () => {
     <div className="homePage">
       {allData.length > 0 ? (
         <div>
-          <CryptoList allData={filteredData} addOrRemoveFavorite={addToFavoriteList} />
+          <CryptoList
+            allData={filteredData}
+            addOrRemoveFavorite={addToFavoriteList}
+          />
         </div>
       ) : (
         <h2 className="loading">
