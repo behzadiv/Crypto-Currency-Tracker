@@ -36,15 +36,17 @@ const HomePage = () => {
       },
     })
       .then((response) => {
-        setAllData(response.data.data.coins);
-        setFilteredData(response.data.data.coins);
+        const data =response.data.data.coins
+       setAllData(data);
+        setFilteredData(data);
+        if(userInput.length && response)searchInput(userInput,data)
       })
       .catch((error) => {
         console.log(error);
       });
   };
-  const searchInput = (x) => {
-    const filtered = allData.filter((item) => {
+  const searchInput = (x,entryData) => {
+    const filtered = (entryData ? entryData: allData).filter((item) => {
       return item.name.toLowerCase().includes(x.toLowerCase());
     });
     setFilteredData(filtered);
