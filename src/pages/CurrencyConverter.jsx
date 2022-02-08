@@ -9,19 +9,25 @@ const CurrencyConvertor = () => {
   const [allSymbol, setAllSymbol] = useState([]);
   useEffect(() => {
     axios
-      .get(
-        `https://api.nomics.com/v1/currencies/ticker?key=2894a1f621619bd9c9778bcb9b476fcc211f623d&ids=&interval=1h,1d,7d,30d,365d&convert=USD&_ga=2.244143877.18783313.1633931534-1081431702.1633931534&per-page=200`
+    ({
+      method: 'GET',
+      url: `https://coinranking1.p.rapidapi.com/coins/`,
+      // params: {referenceCurrencyUuid:"HIVsRcGKkPFtW"},
+      headers: {
+        'x-rapidapi-host': 'coinranking1.p.rapidapi.com',
+        'x-rapidapi-key': '7dc7076d97msh973dbda7c2e6c5dp11a1c2jsn4ed091e41d67'
+      }
+    }
       )
       .then((res) => {
         setAllSymbol(
-          res.data.map((item) => {
-            return item.id;
+          res.data.data.coins.map((item) => {
+            return (item.symbol);
           })
         );
       });
   }, []);
   const options = [];
-  //console.log(allSymbol);
   allSymbol.map((item) => {
     //console.log({ value: item, label: item });
     options.push({ value: item, label: item });
@@ -36,32 +42,41 @@ const CurrencyConvertor = () => {
   const handleChange = (selectedOption) => {
     setSelectedOption(selectedOption);
     setFirstCrypto(selectedOption.value);
-    console.log(selectedOption);
+    //console.log(selectedOption);
   };
   const handleChangeTwo = (selectedOption) => {
     setSelectedOptionTwo(selectedOption);
     setSecondCrypto(selectedOption.value);
-    console.log(selectedOption);
+    //console.log(selectedOption);
   };
   useEffect(() => {
-    axios
-      .get(
-        `https://api.nomics.com/v1/currencies/ticker?key=2894a1f621619bd9c9778bcb9b476fcc211f623d&ids=${firstCrypto}&interval=1h,1d,7d,30d,365d&convert=USD&_ga=2.244143877.18783313.1633931534-1081431702.1633931534&per-page=200`
-      )
-      .then((res) => {
-        console.log(res.data);
-        setFirstCryptoPrice(res.data[0].price * 1);
-      });
+    axios({
+      method: "GET",
+      url: `https://coinranking1.p.rapidapi.com/coins/?symbols[]=${firstCrypto}`,
+      // params: {referenceCurrencyUuid:"HIVsRcGKkPFtW"},
+      headers: {
+        "x-rapidapi-host": "coinranking1.p.rapidapi.com",
+        "x-rapidapi-key":
+          "7dc7076d97msh973dbda7c2e6c5dp11a1c2jsn4ed091e41d67",
+      },
+    }).then((res)=>{
+      //console.log(res.data.data.coins);
+      setFirstCryptoPrice(res.data.data.coins[0].price)
+    })
   }, [firstCrypto]);
   useEffect(() => {
-    axios
-      .get(
-        `https://api.nomics.com/v1/currencies/ticker?key=2894a1f621619bd9c9778bcb9b476fcc211f623d&ids=${secondCrypto}&interval=1h,1d,7d,30d,365d&convert=USD&_ga=2.244143877.18783313.1633931534-1081431702.1633931534&per-page=200`
-      )
-      .then((res) => {
-        console.log(res.data);
-        setSecondCryptoPrice(res.data[0].price * 1);
-      });
+    axios({
+      method: "GET",
+      url: `https://coinranking1.p.rapidapi.com/coins/?symbols[]=${secondCrypto}`,
+      // params: {referenceCurrencyUuid:"HIVsRcGKkPFtW"},
+      headers: {
+        "x-rapidapi-host": "coinranking1.p.rapidapi.com",
+        "x-rapidapi-key":
+          "7dc7076d97msh973dbda7c2e6c5dp11a1c2jsn4ed091e41d67",
+      },
+    }).then((res)=>{
+     setSecondCryptoPrice(res.data.data.coins[0].price)
+    })
   }, [secondCrypto]);
   return (
     <div className="converter-container">
@@ -71,7 +86,6 @@ const CurrencyConvertor = () => {
       <div className="input-qty">
         <input
           type="number"
-          range
           value={cryptoQty}
           onChange={(e) => {
             setCryptoQty(e.target.value);

@@ -5,43 +5,67 @@ import "./Favorite.css";
 const Favorite = () => {
   const data = JSON.parse(localStorage.getItem("data"));
   const [allData, setAllData] = useState([]);
+  const [favorites, setFavorites] = useState([]);
+  const [favoriteString, setFavoriteString] = useState("");
   const [dataChanged, setDataChanged] = useState(true);
-  //console.log(data);
-  const addToFavoriteList = (item) => {
-    const index = data.indexOf(item);
-    //console.log(item,data,index);
-    if (index > -1) {
-      data.splice(index, 1);
-      localStorage.setItem("data", JSON.stringify(data));
-      setDataChanged(true);
-    }
+  const createFavoritesString = () => {
+    data.map((item) => {
+      if (!favorites.includes(`uuids[]=${item}&`))
+        favorites.push(`uuids[]=${item}&`);
+    });
+    setFavoriteString(favorites.join(""));
   };
-  useEffect(() => {
+  const removeFromFavoriteList = (item) => {
+    const index = data.indexOf(item);
+    data.splice(index, 1);
+    localStorage.setItem("data", JSON.stringify(data));
+    favorites.splice(index, 1);
+    createFavoritesString();
+    setDataChanged(true);
+  };
+  const requestData = () => {
     let isMounted = true;
     if (data && data.length) {
-      axios
-        .get(
-          `https://api.nomics.com/v1/currencies/ticker?key=2894a1f621619bd9c9778bcb9b476fcc211f623d&ids=${data}&interval=1h,1d,7d,30d,365d&convert=USD&_ga=2.244143877.18783313.1633931534-1081431702.1633931534&per-page=200`
-        )
+      axios({
+        method: "GET",
+        url: `https://coinranking1.p.rapidapi.com/coins/?${
+          favoriteString
+        }`,
+        // params: {referenceCurrencyUuid:"HIVsRcGKkPFtW"},
+        headers: {
+          "x-rapidapi-host": "coinranking1.p.rapidapi.com",
+          "x-rapidapi-key":
+            "7dc7076d97msh973dbda7c2e6c5dp11a1c2jsn4ed091e41d67",
+        },
+      })
         .then((response) => {
-          if (isMounted) setAllData(response.data);
+          //console.log(response.data.data.coins);
+          if (isMounted) setAllData(response.data.data.coins);
           setDataChanged(false);
         })
         .catch((error) => {
           console.log(error);
         });
-    }
-    else{
-        setAllData([])
+    } else {
+      setAllData([]);
     }
     return () => {
       isMounted = false;
     };
-  }, [dataChanged]);
+  };
+  // useEffect(()=>{
+  //   createFavoritesString()
+  //   console.log(favorites);
+  //   //requestData()
+  // },[favorites])
+  useEffect(() => {
+    createFavoritesString();
+    requestData();
+  }, [favorites, dataChanged]);
   return (
     <div>
       {allData.length ? (
-        <CryptoList allData={allData} addToList={addToFavoriteList} />
+        <CryptoList allData={allData} addOrRemoveFavorite={removeFromFavoriteList} />
       ) : (
         <p className="empty-text">Favorite list is empty...!</p>
       )}

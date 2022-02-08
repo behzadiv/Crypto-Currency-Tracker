@@ -14,11 +14,11 @@ const HomePage = () => {
     JSON.parse(localStorage.getItem("data")) || []
   );
   const userInput = useSearchInput();
-  const addToFavoriteList = (item) => {
-    console.log(item);
-    if (!favoriteList.includes(item)) setFavoriteList([...favoriteList, item]);
+  const addToFavoriteList = (selectedCryptoUuid) => {
+    //console.log(selectedCryptoUuid);
+    if (!favoriteList.includes(selectedCryptoUuid)) setFavoriteList([...favoriteList, selectedCryptoUuid]);
     else {
-      const index = favoriteList.indexOf(item);
+      const index = favoriteList.indexOf(selectedCryptoUuid);
       if (index > -1) {
         favoriteList.splice(index, 1);
         localStorage.setItem("data", JSON.stringify(favoriteList));
@@ -26,21 +26,29 @@ const HomePage = () => {
       }
     }
   };
+  const fav=["razxDUgYGNAdQ","HIVsRcGKkPFtW","Qwsogvtv82FCd"]
   const myRequest = () => {
     axios
-      .get(
-        `https://api.nomics.com/v1/currencies/ticker?key=2894a1f621619bd9c9778bcb9b476fcc211f623d&ids=&interval=1h,1d,7d,30d,365d&convert=USD&_ga=2.244143877.18783313.1633931534-1081431702.1633931534&per-page=200`
+     ({
+      method: 'GET',
+      url: `https://coinranking1.p.rapidapi.com/coins/`,
+      // params: {referenceCurrencyUuid:"HIVsRcGKkPFtW"},
+      headers: {
+        'x-rapidapi-host': 'coinranking1.p.rapidapi.com',
+        'x-rapidapi-key': '7dc7076d97msh973dbda7c2e6c5dp11a1c2jsn4ed091e41d67'
+      }
+    }
       )
       .then((response) => {
-        setAllData(response.data);
-        setFilteredData(response.data);
+        setAllData(response.data.data.coins);
+        setFilteredData(response.data.data.coins);
       })
       .catch((error) => {
         console.log(error);
       });
   };
   useEffect(() => {
-    console.log(userInput);
+    //console.log(userInput);
     searchInput(userInput);
   }, [userInput]);
 
@@ -96,13 +104,10 @@ const HomePage = () => {
   }, [collapsed]);
 
   return (
-   <section>
-
-      <div className="homePage">
-        <div className="sponser-text"><a href="https://nomics.com" target="_blank">Crypto Market Cap & Pricing Data Provided By Nomics.</a></div>
+    <div className="homePage">
       {allData.length > 0 ? (
         <div>
-          <CryptoList allData={filteredData} addToList={addToFavoriteList} />
+          <CryptoList allData={filteredData} addOrRemoveFavorite={addToFavoriteList} />
         </div>
       ) : (
         <h2 className="loading">
@@ -121,7 +126,6 @@ const HomePage = () => {
         </span>
       </div>
     </div>
-   </section>
   );
 };
 

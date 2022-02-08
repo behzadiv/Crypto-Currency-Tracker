@@ -3,7 +3,7 @@ import Crypto from "../Crypto/Crypto";
 import styles from "./CryptoList.css";
 import Navbar from "../Navbar/Navbar";
 import GetWindowInnerwidth from "../../utility/GetWindowInnerwidth";
-const CryptoList = ({ allData, addToList }) => {
+const CryptoList = ({ allData, addOrRemoveFavorite }) => {
   //console.log(allData);
   const [searchData, setSearchData] = useState([]);
   const data = JSON.parse(localStorage.getItem("data"));
@@ -13,14 +13,16 @@ const CryptoList = ({ allData, addToList }) => {
       return (
         <Crypto
           number={allData.indexOf(item)}
-          key={item.id}
+          key={item.rank}
           symbol={item.symbol}
-          logo={item.logo_url}
+          logo={item.iconUrl}
           price={item.price}
           name={item.name}
-          daily={item["1d"]}
-          addToList={addToList}
-          isFavorite={data.includes(item.id)}
+          oneDayChange={item.change}
+          addOrRemoveFavorite={addOrRemoveFavorite}
+          volume24={item["24hVolume"]}
+          isFavorite={data.includes(item.uuid)}
+          uuid={item.uuid}
         />
       );
     });
