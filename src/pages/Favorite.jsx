@@ -6,7 +6,7 @@ const Favorite = () => {
   const data = JSON.parse(localStorage.getItem("data"));
   const [allData, setAllData] = useState([]);
   const [favorites, setFavorites] = useState([]);
-  const [favoriteString, setFavoriteString] = useState("");
+  const [favoriteString, setFavoriteString] = useState(null);
   const [dataChanged, setDataChanged] = useState(true);
   const createFavoritesString = () => {
     data.map((item) => {
@@ -25,11 +25,11 @@ const Favorite = () => {
   };
   const requestData = () => {
     let isMounted = true;
-    if (data && data.length) {
+    if (data && data.length && favorites && favoriteString) {
       axios({
         method: "GET",
         url: `https://coinranking1.p.rapidapi.com/coins/?${
-          favoriteString
+          favoriteString 
         }`,
         // params: {referenceCurrencyUuid:"HIVsRcGKkPFtW"},
         headers: {
@@ -53,15 +53,11 @@ const Favorite = () => {
       isMounted = false;
     };
   };
-  // useEffect(()=>{
-  //   createFavoritesString()
-  //   console.log(favorites);
-  //   //requestData()
-  // },[favorites])
+  
   useEffect(() => {
     createFavoritesString();
     requestData();
-  }, [favorites, dataChanged]);
+  }, [favorites, dataChanged,favoriteString]);
   return (
     <div>
       {allData.length ? (
