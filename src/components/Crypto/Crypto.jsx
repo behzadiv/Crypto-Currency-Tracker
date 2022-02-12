@@ -22,8 +22,9 @@ const Crypto = ({symbol,logo,price,name,oneDayChange,number,addOrRemoveFavorite,
     const myRef = useRef()
     const addFavorite =()=>{
         const newOne = myRef.current.innerText
-        console.log(newOne);
-        addOrRemoveFavorite(newOne)
+        addOrRemoveFavorite(newOne);
+        console.log(document.querySelector("#star").classList);
+        document.activeElement.blur()
     }
     
     return (
@@ -34,7 +35,7 @@ const Crypto = ({symbol,logo,price,name,oneDayChange,number,addOrRemoveFavorite,
         (<div className="cryptoRow">
             <h5>{ true ? number+1 : number}</h5>
             <div className="cryptoName">
-                <span className={isFavorite ? "favorite" : "notFavorite" }onClick={addFavorite}><FontAwesomeIcon icon={faStar}/></span> 
+                <span className={isFavorite ? "favorite" : "notFavorite" } id="star" tabIndex="1" onClick={addFavorite}><FontAwesomeIcon icon={faStar}/></span> 
                 <img src={logo} alt=""/> 
                 <h3>{name}</h3>
             </div>

@@ -37,13 +37,27 @@ img{
 .favorite{
     cursor: pointer;
     margin-right: 10px; 
-    color:rgba(182, 182, 34, 0.705)
+    color:rgba(182, 182, 34, 0.705);
 }
-
+#star:focus{
+    animation: starAnim 300ms ease-in-out;
+}
 @media screen and (max-width : 600px) {
         .cryptoRow {
             display: grid;
             grid-template-columns: 1fr 2fr 2fr 1fr 1fr;
             font-size: small;
         }
+}
+
+@keyframes starAnim{
+    0%{
+        transform: scale(1);  
+    }
+    50%{
+        transform: rotateY(180deg)rotateX(180deg)scale(1.6);
+    }
+    100%{
+        transform: scale(1);
+    }
 }
