@@ -30,7 +30,6 @@ const Footer = () => {
     { name: "Fund", to: "/fund", icon: <FontAwesomeIcon icon={faWallet} /> },
   ];
   const {width}=GetWindowInnerwidth()
-
  return (
     <div>
       {width >= 800 ? (
@@ -50,8 +49,8 @@ const Footer = () => {
                     activeClassName="activeLink"
                     className="list"
                   >
-                    {item.icon}
-                    {item.name}
+                    <span className="footer-icon">{item.icon}</span>
+                    <span>{item.name}</span>
                   </NavLink>
                 </li>
               );
