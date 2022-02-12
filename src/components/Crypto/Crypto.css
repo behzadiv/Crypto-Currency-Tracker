@@ -43,13 +43,15 @@ img{
     animation: starAnim 300ms ease-in-out;
 }
 @media screen and (max-width : 600px) {
-        .cryptoRow {
-            display: grid;
-            grid-template-columns: 1fr 2fr 2fr 1fr 1fr;
-            font-size: small;
-        }
+    .cryptoRow {
+        display: grid;
+        grid-template-columns: 1fr 2fr 2fr 1fr 1fr;
+        font-size: small;
+    }
+    #starMobileSize:focus{
+       animation: starAnim 300ms ease-in-out;
+    }
 }
-
 @keyframes starAnim{
     0%{
         transform: scale(1);  
