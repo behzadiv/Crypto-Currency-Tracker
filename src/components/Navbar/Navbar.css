@@ -4,7 +4,7 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
-    background-color: grey;
+    background-color: #322e2f;
     margin-bottom: 10px;
 }
 .logo{
@@ -23,6 +23,7 @@
 }
 .logo span{
     font-size: x-small;
+    color: rgb(255, 0, 0);
 }
 .menu {
     width: 100%;
